@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FindBugsFilter
+        xmlns="http://findbugs.sourceforge.net/filter/3.0.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://findbugs.sourceforge.net/filter/3.0.0 https://raw.githubusercontent.com/findbugsproject/findbugs/master/findbugs/etc/findbugsfilter.xsd">
+    
+    <!-- http://findbugs.sourceforge.net/manual/filter.html -->
+    
+    <!-- We are ignoring this rule as it require a lot of annotations, used only by findbugs, strewn around the code -->
+    <Match>
+        <BugPattern name="UNKNOWN_NULLNESS_OF_PARAMETER,UNKNOWN_NULLNESS_OF_RETURNED_VALUE,JAXRS_ENDPOINT"/>
+    </Match>
+    
+    <!-- We prefer to use static declaration of loggers in every class -->
+	<Match>
+        <BugPattern name="SLF4J_LOGGER_SHOULD_BE_NON_STATIC, CRLF_INJECTION_LOGS"/>
+    </Match>
+    
+    <!-- We are ignoring the below bug pattern as we wanted to propagate expected exceptions and throw one custom exception from each layer -->
+    <Match>
+      <BugPattern name="DRE_DECLARED_RUNTIME_EXCEPTION,WEM_WEAK_EXCEPTION_MESSAGING,EXS_EXCEPTION_SOFTENING_NO_CHECKED,EXS_EXCEPTION_SOFTENING_NO_CONSTRAINTS"/>
+    </Match>
+    
+    <!-- We are ignoring findbugs for all google AutoValue classes, as these are auto generated code during runtime -->
+    <Match>    
+        <Class name="~.*AutoValue_*.*"/>
+    </Match>
+    
+    <!-- We are ignoring findbugs for MISSING_FIELD_IN_TO_STRING for entity models as too many fields in toString causes stack overflow -->
+    <Match>    
+        <Package name="~.*com.smilebat.learntribe*.*dataaccess.jpa.entity*.*"/>
+    	<BugPattern name="MISSING_FIELD_IN_TO_STRING"/>
+    </Match>
+    
+    <!-- We are ignoring EQUALS_HAS_MORE_FIELDS_THAN_HASHCODE findbugs for Identifier class to make use of the HashMap -->
+    <!-- <Match>
+        <Class name="com.smilebat.learntribe.concept.core.Identifier"/>
+        <BugPattern name="EQUALS_HAS_MORE_FIELDS_THAN_HASHCODE"/>
+    </Match> -->
+    
+    <!-- We are ignoring findbugs for all equals() methods except EQUALS_HAS_MORE_FIELDS_THAN_HASHCODE -->
+    <Match>
+        <Method name="equals"/>
+        <Not>
+            <BugPattern name="EQUALS_HAS_MORE_FIELDS_THAN_HASHCODE"/>
+        </Not>
+    </Match>
+    
+    <!-- We are ignoring findbugs for all hashCode() methods except HASHCHODE_HAS_MORE_FIELDS_THAN_EQUALS -->
+    <Match>
+	<Method name="hashCode"/>
+        <Not>
+            <BugPattern name="HASHCHODE_HAS_MORE_FIELDS_THAN_EQUALS"/>
+        </Not>
+    </Match>
+    
+    <!-- We are ignoring findbugs for all toString() methods except MISSING_FIELD_IN_TO_STRING -->
+    <Match>    
+        <Method name="toString"/>
+        <Not>
+            <BugPattern name="MISSING_FIELD_IN_TO_STRING"/>
+        </Not>
+    </Match>
+    
+    <!-- We are ignoring CE_CLASS_ENVY and SQL warnings for integration tests -->
+    <Match>
+        <Package name="~.*learntribe*.*test*.*"/>
+        <Or>
+            <BugPattern name="CE_CLASS_ENVY"/>
+            <BugPattern name="SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING"/>
+            <BugPattern name="SQL_INJECTION_JDBC"/>
+        </Or>
+    </Match>
+
+</FindBugsFilter>

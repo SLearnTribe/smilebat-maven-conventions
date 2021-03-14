@@ -1,0 +1,120 @@
+<ruleset comparisonMethod="maven"
+         xmlns="http://mojo.codehaus.org/versions-maven-plugin/rule/2.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://mojo.codehaus.org/versions-maven-plugin/rule/2.0.0 http://mojo.codehaus.org/versions-maven-plugin/xsd/rule-2.0.0.xsd">
+    <ignoreVersions>
+        <ignoreVersion type="regex">.*[Rr][Cc].*</ignoreVersion>
+        <ignoreVersion type="regex">.*[Aa][Ll][Pp][Hh][Aa].*</ignoreVersion>
+        <ignoreVersion type="regex">.*[Cc][Rr].*</ignoreVersion>
+        <ignoreVersion type="regex">.*[Bb][Ee][Tt][Aa].*</ignoreVersion>
+        <!-- Allowing b (beta) versions for now because we are forced to include an HK2 beta -->
+        <!--<ignoreVersion type="regex">.*[Bb][0-9]*</ignoreVersion>-->
+        <ignoreVersion type="regex">.*[Mm][0-9]*</ignoreVersion>
+        <ignoreVersion type="regex">.*[Rr][Ee][Vv].*</ignoreVersion>
+        <ignoreVersion type="regex">.*[0-9][Aa]</ignoreVersion>
+        <ignoreVersion type="regex">.*[Pp][Ff][Dd].*</ignoreVersion>
+        <ignoreVersion type="regex">.*[Ee][Dd][Rr].*</ignoreVersion>
+        <!-- pr = "pre-release -->
+        <ignoreVersion type="regex">.*[Pp][Rr].*</ignoreVersion>
+        <!-- Exclude draft versions -->
+        <ignoreVersion type="regex">.*[Dd][Rr][Aa][Ff][Tt].*</ignoreVersion>
+    </ignoreVersions>
+    <rules>
+        <rule groupId="smilebat-security" comparisonMethod="maven">
+            <ignoreVersions>
+                <ignoreVersion type="regex">2006\.01.*</ignoreVersion>
+            </ignoreVersions>
+        </rule>
+        <rule groupId="com.netflix.turbine" comparisonMethod="maven">
+            <ignoreVersions>
+                <ignoreVersion type="regex">2\.0\.0-.*</ignoreVersion>
+            </ignoreVersions>
+        </rule>
+        <rule groupId="com.google.guava" artifactId="guava" comparisonMethod="maven">
+            <ignoreVersions>
+                <ignoreVersion type="regex">.*-android$</ignoreVersion>
+            </ignoreVersions>
+        </rule>
+        <rule groupId="commons-collections" comparisonMethod="maven">
+            <ignoreVersions>
+                <ignoreVersion type="regex">[0-9][0-9].*</ignoreVersion>
+            </ignoreVersions>
+        </rule>
+        <rule groupId="dom4j" comparisonMethod="maven">
+            <ignoreVersions>
+                <ignoreVersion type="regex">2004.*</ignoreVersion>
+            </ignoreVersions>
+        </rule>
+        <!-- Can be removed once the all beta version exclusion is re-enabled -->
+        <rule groupId="javax.el" comparisonMethod="maven">
+            <ignoreVersions>
+                <ignoreVersion type="regex">.*[Bb][0-9]*</ignoreVersion>
+            </ignoreVersions>
+        </rule>
+        <!-- Can be removed once the all beta version exclusion is re-enabled -->
+        <rule groupId="javax.mail" comparisonMethod="maven">
+            <ignoreVersions>
+                <ignoreVersion type="regex">.*[Bb][0-9]*</ignoreVersion>
+            </ignoreVersions>
+        </rule>
+        <!-- Can be removed once the all beta version exclusion is re-enabled -->
+        <rule groupId="javax.servlet" comparisonMethod="maven">
+            <ignoreVersions>
+                <ignoreVersion type="regex">.*[Bb][0-9]*</ignoreVersion>
+            </ignoreVersions>
+        </rule>
+        <!-- Can be removed once the all beta version exclusion is re-enabled -->
+        <rule groupId="org.glassfish.web" comparisonMethod="maven">
+            <ignoreVersions>
+                <ignoreVersion type="regex">.*[Bb][0-9]*</ignoreVersion>
+            </ignoreVersions>
+        </rule>
+        <!-- Can be removed once the all beta version exclusion is re-enabled -->
+        <rule groupId="org.glassfish.jersey" comparisonMethod="maven">
+            <ignoreVersions>
+                <ignoreVersion type="regex">.*[Bb][0-9]*</ignoreVersion>
+            </ignoreVersions>
+        </rule>
+        <!-- Waiting on dropwizard https://github.com/dropwizard/dropwizard/issues/2127 -->
+        <rule groupId="org.hibernate" artifactId="hibernate-validator" comparisonMethod="maven">
+            <ignoreVersions>
+                <ignoreVersion type="regex">6.*</ignoreVersion>
+            </ignoreVersions>
+        </rule>
+        <!-- Can be removed once the all beta version exclusion is re-enabled -->
+        <rule groupId="org.eclipse.jetty.toolchain" artifactId="jetty-schema" comparisonMethod="maven">
+            <ignoreVersions>
+                <ignoreVersion type="regex">4.0.0-[Bb][0-9]*</ignoreVersion>
+            </ignoreVersions>
+        </rule>
+        <rule groupId="com.thoughtworks.xstream" artifactId="xstream" comparisonMethod="maven">
+            <ignoreVersions>
+                <ignoreVersion>1.4.10-java7</ignoreVersion>
+            </ignoreVersions>
+        </rule>
+        <!-- Blocked until Dropwizard updates to 0.8.x -->
+        <rule groupId="net.sourceforge.argparse4j" comparisonMethod="maven">
+            <ignoreVersions>
+                <ignoreVersion type="regex">0\.8\..*</ignoreVersion>
+            </ignoreVersions>
+        </rule>
+        <rule groupId="org.ow2.asm" comparisonMethod="maven">
+            <ignoreVersions>
+                <ignoreVersion type="regex">6\.0.*</ignoreVersion>
+            </ignoreVersions>
+        </rule>
+        <!-- Blocked until asm 6.0 can be pulled in, which is blocked by extra-enforcer-rules. See above. -->
+        <rule groupId="org.eclipse.jetty" comparisonMethod="maven">
+            <ignoreVersions>
+                <ignoreVersion type="regex">9\.4\..*</ignoreVersion>
+            </ignoreVersions>
+        </rule>
+        <!-- Blocked until jetty 9.4.8* can be pulled in, which is blocked by extra-enforcer-rules. See above. -->
+        <rule groupId="io.dropwizard" comparisonMethod="maven">
+            <ignoreVersions>
+                <ignoreVersion type="regex">1\..*</ignoreVersion>
+            </ignoreVersions>
+        </rule>
+
+    </rules>
+</ruleset>
