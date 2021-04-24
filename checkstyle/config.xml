@@ -38,11 +38,6 @@
             <property name="allowByTailComment" value="true"/>
             <property name="allowNonPrintableEscapes" value="true"/>
         </module>
-        <module name="LineLength">
-		    <!-- Changed lenght from 140 to 300-->
-            <property name="max" value="300"/>
-            <property name="ignorePattern" value="^package.*|^import.*|a href|href|http://|https://|ftp://"/>
-        </module>
         <module name="AvoidStarImport"/>
         <module name="OneTopLevelClass"/>
         <module name="NoLineWrap"/>
@@ -159,7 +154,11 @@
         </module>
         <module name="SingleLineJavadoc"/>
     </module>
-
+    <module name="LineLength">
+        <!-- Changed lenght from 140 to 300-->
+        <property name="max" value="300"/>
+        <property name="ignorePattern" value="^package.*|^import.*|a href|href|http://|https://|ftp://"/>
+    </module>
         <!-- Checks for whitespace                               -->
     <!-- See http://checkstyle.sf.net/config_whitespace.html -->
     <module name="FileTabCharacter">
