@@ -31,6 +31,12 @@
         <Package name="~.*com.smilebat.learntribe*.*dataaccess.jpa.entity*.*"/>
     	<BugPattern name="MISSING_FIELD_IN_TO_STRING"/>
     </Match>
+	
+	<!-- We are ignoring findbugs for USBR_UNNECESSARY_STORE_BEFORE_RETURN for All Map Structs -->
+	<Match>    
+        <Package name="~.*com.smilebat.learntribe*.*mappers*.*"/>
+    	<BugPattern name="USBR_UNNECESSARY_STORE_BEFORE_RETURN"/>
+    </Match>
     
     <!-- We are ignoring EQUALS_HAS_MORE_FIELDS_THAN_HASHCODE findbugs for Identifier class to make use of the HashMap -->
     <!-- <Match>
