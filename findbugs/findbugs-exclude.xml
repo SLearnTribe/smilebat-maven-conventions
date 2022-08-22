@@ -32,6 +32,12 @@
     	<BugPattern name="MISSING_FIELD_IN_TO_STRING"/>
     </Match>
 	
+    <Match>    
+        <Class name="~.*Request*.*,~.*Response*.*"/>
+    	<BugPattern name="MISSING_FIELD_IN_TO_STRING"/>
+		<BugPattern name="MISSING_TO_STRING_OVERRIDE"/>		
+    </Match>
+	
 	<!-- We are ignoring findbugs for USBR_UNNECESSARY_STORE_BEFORE_RETURN for All Map Structs -->
 	<Match>    
         <Package name="~.*com.smilebat.learntribe*.*mappers*.*"/>
