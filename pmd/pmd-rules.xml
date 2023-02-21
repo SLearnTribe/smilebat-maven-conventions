@@ -65,6 +65,12 @@
       <property name="violationSuppressXPath" value="//MethodDeclarator[@Image='hashCode' or @Image='equals' or @Image='toString']"/>
     </properties>
   </rule>
+    
+    <rule ref="category/java/design.xml/TooManyFields">
+        <properties>
+            <property name="maxfields" value="25" />
+        </properties>
+    </rule>
 
   <!-- Ignore TooManyFields and ExcessivePublicCount for the following classes -->
   <!-- <rule ref="rulesets/java/codesize.xml/TooManyFields">
